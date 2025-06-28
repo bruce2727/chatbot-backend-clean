@@ -41,6 +41,8 @@ app.post('/chat', async (req, res) => {
   }
 });
 
+const port = process.env.PORT || 3000; // Usa la porta fornita da Render, altrimenti 3000
 app.listen(port, () => {
   console.log(`Server in ascolto su http://localhost:${port}`);
 });
+
