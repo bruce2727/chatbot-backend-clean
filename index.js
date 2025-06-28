@@ -44,5 +44,8 @@ app.post('/chat', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server in ascolto su http://localhost:${port}`);
 });
+app.get('/', (req, res) => {
+  res.send('Benvenuto al chatbot backend! La route /chat è attiva.');
+});
 
 
