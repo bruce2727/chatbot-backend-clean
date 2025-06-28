@@ -77,3 +77,4 @@ app.post('/chat', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server in ascolto su http://localhost:${port}`);
 });
+// Aggiornamento per forzare deploy: aggiorno timestamp: 2025-06-28
