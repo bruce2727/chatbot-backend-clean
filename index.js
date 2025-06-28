@@ -9,6 +9,11 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Route di benvenuto / test
+app.get('/', (req, res) => {
+  res.send('Benvenuto al chatbot backend! La route /chat è attiva.');
+});
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
