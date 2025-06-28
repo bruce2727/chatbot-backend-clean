@@ -13,6 +13,15 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+const systemMessage = `
+Sei un tutor AI specializzato nel supporto agli insegnanti per la formazione professionale.
+Fornisci risposte chiare, precise e utili riguardo a didattica, tecnologie educative, metodologie di insegnamento e uso dell’intelligenza artificiale a scuola.
+Usa un linguaggio professionale ma accessibile.
+Offri esempi pratici e risorse utili.
+Se una domanda è ambigua, chiedi ulteriori dettagli.
+Non fornire informazioni non accurate o fuori tema.
+`;
+
 app.post('/chat', async (req, res) => {
   try {
     const userMessage = req.body.message;
@@ -23,10 +32,7 @@ app.post('/chat', async (req, res) => {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
-        {
-          role: 'system',
-          content: 'Sei il tutor AI del corso, rispondi solo a domande pertinenti agli argomenti del corso in modo semplice, chiaro e amichevole.',
-        },
+        { role: 'system', content: systemMessage },
         { role: 'user', content: userMessage },
       ],
       max_tokens: 500,
@@ -44,8 +50,6 @@ app.post('/chat', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server in ascolto su http://localhost:${port}`);
 });
-app.get('/', (req, res) => {
-  res.send('Benvenuto al chatbot backend! La route /chat è attiva.');
-});
+
 
 
